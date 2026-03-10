@@ -14,6 +14,19 @@ output "postgres_fqdn" {
 }
 
 output "postgres_database_name" {
-  description = "Azure PostgreSQL Database Name"
+  description = "The name of the database created for ETL purposes"
   value       = azurerm_postgresql_flexible_server_database.default_db.name
+}
+
+# --- IAM Credentials Outputs ---
+output "etl_user_access_key" {
+  description = "AWS Access Key ID for the ETL user (Copy to .env as AWS_ACCESS_KEY_ID)"
+  value       = aws_iam_access_key.etl_user_key.id
+  sensitive   = true
+}
+
+output "etl_user_secret_key" {
+  description = "AWS Secret Access Key for the ETL user (Copy to .env as AWS_SECRET_ACCESS_KEY)"
+  value       = aws_iam_access_key.etl_user_key.secret
+  sensitive   = true
 }
