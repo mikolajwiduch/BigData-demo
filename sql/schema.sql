@@ -1,7 +1,7 @@
 -- SQL Schema for Multi-Cloud Financial ETL Pipeline
 -- Database should be 'etl_demo_db'
 
--- Tabela przechowująca notowania dzienne instrumentów finansowych
+-- Table storing daily ticker prices
 CREATE TABLE IF NOT EXISTS daily_prices_fact (
     id SERIAL PRIMARY KEY,
     symbol VARCHAR(20) NOT NULL,
@@ -19,12 +19,12 @@ CREATE TABLE IF NOT EXISTS daily_prices_fact (
     CONSTRAINT unique_symbol_date UNIQUE(symbol, trade_date)
 );
 
--- Tabela audytowa dla logów z wykonania zadań ETL (monitoringu/on-call)
+-- Audit table for ETL job execution logs
 CREATE TABLE IF NOT EXISTS etl_audit_log (
     log_id SERIAL PRIMARY KEY,
     execution_id VARCHAR(50) NOT NULL,
     job_name VARCHAR(100) NOT NULL,
-    status VARCHAR(20) NOT NULL, -- np. 'STARTED', 'SUCCESS', 'FAILED'
+    status VARCHAR(20) NOT NULL, -- e.g. 'STARTED', 'SUCCESS', 'FAILED'
     records_processed INTEGER DEFAULT 0,
     error_message TEXT,
     start_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
