@@ -1,0 +1,7 @@
+yfinance>=0.2.37
+pandas==2.2.1
+SQLAlchemy==2.0.28
+psycopg2-binary==2.9.9
+boto3==1.34.60
+pytest==8.1.1
+python-dotenv==1.0.1
