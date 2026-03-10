@@ -1,0 +1,17 @@
+apiVersion: 1
+
+datasources:
+  - name: PostgreSQL
+    type: postgres
+    uid: postgres_etl
+    isDefault: true
+    access: proxy
+    url: bigdata-demo-psql-3wons3.postgres.database.azure.com:5432
+    user: psqladmin
+    database: etl_demo_db
+    secureJsonData:
+      password: password
+    jsonData:
+      database: etl_demo_db
+      sslmode: 'require'
+      postgresVersion: 16
