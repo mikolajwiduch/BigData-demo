@@ -6,7 +6,8 @@ resource "random_string" "suffix" {
 
 # --- AWS: S3 Bucket ---
 resource "aws_s3_bucket" "raw_data" {
-  bucket = "${var.project_prefix}-raw-data-${random_string.suffix.result}"
+  bucket        = "${var.project_prefix}-raw-data-${random_string.suffix.result}"
+  force_destroy = true
 }
 
 # --- Azure: Resource Group ---
